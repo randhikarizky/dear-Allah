@@ -4,10 +4,12 @@ import {
   Grid,
   Link,
   Stack,
+  Theme,
   Typography,
   colors,
 } from "@mui/material";
 import { Feeling } from "../global/constants/feeling.constant";
+import Glass from "../global/components/Glass";
 
 const LandingPage = () => {
   return (
@@ -18,7 +20,7 @@ const LandingPage = () => {
         <Grid container spacing={3}>
           {Feeling.map((feel: any) => (
             <Grid key={feel.id} item xs={12} sm={6} md={3}>
-              <Card>
+              <Glass color={feel.color}>
                 <Stack spacing={2} sx={{ p: 3 }}>
                   <Link color="inherit" underline="hover">
                     <Typography variant="subtitle2" noWrap>
@@ -26,7 +28,7 @@ const LandingPage = () => {
                     </Typography>
                   </Link>
                 </Stack>
-              </Card>
+              </Glass>
             </Grid>
           ))}
         </Grid>

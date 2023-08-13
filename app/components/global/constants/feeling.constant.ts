@@ -129,12 +129,12 @@ export const Feeling = [
     id: "underpriviledged",
     title: "Underpriviledged",
     path: "/underpriviledged",
-    color: ["", "", ""],
+    color: ["#85603F", "#9E7540", "#766161"],
   },
   {
     id: "hardships",
     title: "Tired of Hardships",
     path: "/hardships",
-    color: ["", "", ""],
+    color: ["#838383", "#474554", "#707B83"],
   },
 ];
