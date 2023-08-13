@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import GlobalStyles from "@/assets/theme/globalStyles";
 import { styled } from "@mui/material";
 
+import "@/assets/css/global.css";
+
 const RootStyle = styled("div")(() => ({
   display: "flex",
   minHeight: "100%",
@@ -15,7 +17,11 @@ const RootStyle = styled("div")(() => ({
 const MainStyle = styled("div")(({ theme }) => ({
   flexGrow: 1,
   overflow: "auto",
-  minHeight: "100%",
+  minHeight: "100vh",
+  backgroundColor: theme.palette.grey[100],
+  // background: "linear-gradient(319deg, #bbff99, #ffec99, #ff9999)",
+  // backgroundSize: "600% 600%",
+  // animation: "gradient 15s ease-in-out infinite",
   paddingBottom: theme.spacing(10),
   [theme.breakpoints.up("lg")]: {
     paddingLeft: theme.spacing(2),
