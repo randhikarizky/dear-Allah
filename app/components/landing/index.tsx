@@ -1,13 +1,4 @@
-import {
-  Card,
-  Container,
-  Grid,
-  Link,
-  Stack,
-  Theme,
-  Typography,
-  colors,
-} from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { Feeling } from "../global/constants/feeling.constant";
 import Glass from "../global/components/Glass";
 
@@ -15,19 +6,45 @@ const LandingPage = () => {
   return (
     <>
       <Container maxWidth="xl">
-        <Typography variant="h1">Dear Allah,</Typography>
-        <Typography variant="h3">I feel ...</Typography>
-        <Grid container spacing={3}>
+        <Stack alignItems="center" direction="column" mb={5}>
+          <Typography variant="h1" gutterBottom={false}>
+            Dear Allah
+          </Typography>
+          <Typography variant="h3">I feel ...</Typography>
+        </Stack>
+        <Grid container spacing={4} justifyContent="center" alignItems="center">
           {Feeling.map((feel: any) => (
-            <Grid key={feel.id} item xs={12} sm={6} md={3}>
+            <Grid
+              key={feel.id}
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                transition: "all ease-in-out .2s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  cursor: "pointer",
+                },
+              }}
+            >
               <Glass color={feel.color}>
-                <Stack spacing={2} sx={{ p: 3 }}>
-                  <Link color="inherit" underline="hover">
-                    <Typography variant="subtitle2" noWrap>
-                      {feel.title}
-                    </Typography>
-                  </Link>
-                </Stack>
+                <>
+                  <Box
+                    sx={{
+                      height: "70%",
+                    }}
+                  />
+                  <Typography
+                    variant="h2"
+                    align="center"
+                    sx={{
+                      color: "rgba(0,0,0, 0.6)",
+                    }}
+                  >
+                    {feel.title}
+                  </Typography>
+                </>
               </Glass>
             </Grid>
           ))}
