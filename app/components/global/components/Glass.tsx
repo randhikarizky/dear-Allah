@@ -11,15 +11,16 @@ const GlassBg = styled((props: any) => <Card {...props} />)(({ color }) => ({
     color[2] +
     ", transparent)",
   border: "2px solid rgba(255, 255, 255, 1)",
+  borderRadius: "16px",
 }));
 
 const GlassEffect = styled((props: any) => <Card {...props} />)(
   ({ theme }) => ({
     background: "rgba( 255, 255, 255, 0.25)",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(10px)",
     borderRadius: "0px",
-    height: "50vh",
+    height: "25rem",
+    padding: "2rem",
   })
 );
 
@@ -29,7 +30,6 @@ type Props = {
 };
 
 const Glass = (props: Props) => {
-  console.log(props);
   return (
     <GlassBg color={props.color}>
       <GlassEffect>{props.children}</GlassEffect>
