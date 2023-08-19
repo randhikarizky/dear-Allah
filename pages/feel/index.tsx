@@ -1,15 +1,15 @@
 import type { NextPage } from "next";
 
-import { default as LandingPageComponent } from "@/app/components/landing";
 import HeadComponent from "@/app/global/components/HeadComponent";
+import FeelComponent from "@/app/feature/feel/presentation/components/FeelComponent";
 
-const LandingPages: NextPage = () => {
+const FeelPage: NextPage = () => {
   return (
     <>
       <HeadComponent title="Welcome" />
-      <LandingPageComponent />
+      <FeelComponent />
     </>
   );
 };
 
-export default LandingPages;
+export default FeelPage;

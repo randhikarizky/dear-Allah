@@ -1,16 +1,27 @@
+import { useRouter } from "next/router";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import { Feeling } from "../global/constants/feeling.constant";
-import Glass from "../global/components/Glass";
+
+import Glass from "@/app/global/components/Glass";
+import { Feeling } from "@/app/global/constants/feeling.constant";
 
 const LandingPage = () => {
+  const router = useRouter();
+
+  const go = (param: string) => {
+    return router.push({
+      pathname: "/feel",
+      query: { verse: param },
+    });
+  };
+
   return (
     <>
       <Container maxWidth="xl">
-        <Stack alignItems="center" direction="column" mb={5}>
+        <Stack alignItems="center" direction="column" mb={5} gap={1}>
           <Typography variant="h1" gutterBottom={false}>
-            Dear Allah
+            Dear Allah,
           </Typography>
-          <Typography variant="h3">I feel ...</Typography>
+          <h3>I feel ...</h3>
         </Stack>
         <Grid container spacing={4} justifyContent="center" alignItems="center">
           {Feeling.map((feel: any) => (
@@ -27,6 +38,7 @@ const LandingPage = () => {
                   cursor: "pointer",
                 },
               }}
+              onClick={() => go(feel.verse)}
             >
               <Glass color={feel.color}>
                 <>
