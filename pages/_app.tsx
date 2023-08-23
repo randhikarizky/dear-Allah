@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 
 import "@/assets/css/global.css";
-import ScrollTop from "@/app/components/global/components/ScrollToTop";
+import ScrollTop from "@/app/global/components/ScrollToTop";
 
 const RootStyle = styled("div")(() => ({
   display: "flex",
