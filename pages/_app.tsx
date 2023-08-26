@@ -54,7 +54,10 @@ const App = ({ Component, pageProps }: AppProps) => {
             <MainStyle>
               <ReactQueryDevtools />
               <GlobalStyles />
-              <Toolbar id="back-to-top-anchor" />
+              <Toolbar
+                id="back-to-top-anchor"
+                sx={{ position: "absolute", top: "0" }}
+              />
               <ScrollTop />
               <Component {...pageProps} />
             </MainStyle>

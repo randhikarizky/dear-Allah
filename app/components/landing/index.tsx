@@ -1,22 +1,23 @@
 import { useRouter } from "next/router";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
-import Glass from "@/app/global/components/Glass";
 import { Feeling } from "@/app/global/constants/feeling.constant";
+import GlassBg from "@/app/global/components/Glass/GlassBg";
+import GlassBody from "@/app/global/components/Glass/GlassBody";
 
 const LandingPage = () => {
   const router = useRouter();
 
-  const go = (param: string) => {
+  const go = (name: string, param: string, color: [string, string, string]) => {
     return router.push({
       pathname: "/feel",
-      query: { verse: param },
+      query: { name: name, verse: param, color: color },
     });
   };
 
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ marginTop: '2rem' }}>
         <Stack alignItems="center" direction="column" mb={5} gap={1}>
           <Typography variant="h1" gutterBottom={false}>
             Dear Allah,
@@ -38,26 +39,28 @@ const LandingPage = () => {
                   cursor: "pointer",
                 },
               }}
-              onClick={() => go(feel.verse)}
+              onClick={() => go(feel.title, feel.verse, feel.color)}
             >
-              <Glass color={feel.color}>
-                <>
-                  <Box
-                    sx={{
-                      height: "70%",
-                    }}
-                  />
-                  <Typography
-                    variant="h2"
-                    align="center"
-                    sx={{
-                      color: "rgba(0,0,0, 0.6)",
-                    }}
-                  >
-                    {feel.title}
-                  </Typography>
-                </>
-              </Glass>
+              <GlassBg color={feel.color}>
+                <GlassBody>
+                  <>
+                    <Box
+                      sx={{
+                        height: "70%",
+                      }}
+                    />
+                    <Typography
+                      variant="h2"
+                      align="center"
+                      sx={{
+                        color: "rgba(0,0,0, 0.6)",
+                      }}
+                    >
+                      {feel.title}
+                    </Typography>
+                  </>
+                </GlassBody>
+              </GlassBg>
             </Grid>
           ))}
         </Grid>
