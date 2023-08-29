@@ -39,3 +39,36 @@ export interface Surah {
     namaLatin: string;
   };
 }
+
+export interface Tafsir {
+  nomor: number;
+  jumlahAyat: number;
+  nama: string;
+  namaLatin: string;
+  tempatTurun: string;
+  arti: string;
+  deskripsi: string;
+  audioFull: {
+    "01"?: string;
+    "02"?: string;
+    "03"?: string;
+    "04"?: string;
+    "05"?: string;
+  };
+  tafsir: {
+    ayat: number;
+    teks: string;
+  }[];
+  suratSelanjutnya: {
+    nomor: number;
+    jumlahAyat: number;
+    nama: string;
+    namaLatin: string;
+  };
+  suratSebelumnya: {
+    nomor: number;
+    jumlahAyat: number;
+    nama: string;
+    namaLatin: string;
+  };
+}

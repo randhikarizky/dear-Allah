@@ -21,3 +21,22 @@ export const useGetQuranBySurah = (request: SurahRequest) => {
 
   return controller;
 };
+
+export const useGetTafsirBySurah = (request: SurahRequest) => {
+  const controller = useQuery(
+    ["get-tafsir", request],
+    () => QuranService.getTafsirBySurah(request),
+    {
+      enabled: false,
+      retry: false,
+    }
+  );
+
+  useEffect(() => {
+    if (controller?.isError) {
+      console.error("Failed to get Tafsir!");
+    }
+  }, [controller.isError]);
+
+  return controller;
+};

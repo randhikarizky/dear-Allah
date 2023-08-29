@@ -3,7 +3,7 @@ export const Feeling = [
     id: "happy",
     title: "Happy",
     path: "/happy",
-    color: ["#FFF6BD", "#CEEDC7", "#86C8BC"],
+    color: ["#FED049", "#68B984", "#CFFDE1"],
     verse: "28:77",
   },
   {
@@ -11,7 +11,7 @@ export const Feeling = [
     title: "Sad",
     path: "/sad",
     color: ["#76A5FF", "#878EBA", "#AABBFF"],
-    verse: "2:25",
+    verse: "3:25",
   },
   {
     id: "angry",
@@ -24,15 +24,8 @@ export const Feeling = [
     id: "scared",
     title: "Scared",
     path: "/scared",
-    color: ["#41444B", "#52575D", "#CABFAB"],
+    color: ["#6B6B6B", "#D8BFD8", "#D8BFD8"],
     verse: "40:44",
-  },
-  {
-    id: "lonely",
-    title: "Lonely",
-    path: "/lonely",
-    color: ["#BBBBBB", "#A19EB0", "#FAF8FF"],
-    verse: "20:46",
   },
   {
     id: "weak",
@@ -40,6 +33,13 @@ export const Feeling = [
     path: "/weak",
     color: ["#93BFCF", "#85AAC7", "#C2F9FF"],
     verse: "4:28",
+  },
+  {
+    id: "lonely",
+    title: "Lonely",
+    path: "/lonely",
+    color: ["#6B6B6B", "#20B2AA", "#FFD1DC"],
+    verse: "20:46",
   },
   {
     id: "worried",
@@ -52,7 +52,7 @@ export const Feeling = [
     id: "anxious",
     title: "Anxious",
     path: "/anxious",
-    color: ["#B1B2FF", "#D2DAFF", "#AAC4FF"],
+    color: ["#6B6B6B", "#B0C4DE", "#FFFACD"],
     verse: "8:30",
   },
   {
@@ -80,7 +80,7 @@ export const Feeling = [
     id: "peace",
     title: "Need Peace",
     path: "/need-peace",
-    color: ["#FDFDBD", "#C4C487", "#C9E19F"],
+    color: ["#B0C4DE", "#20B2AA", "#FFDAB9"],
     verse: "5:16",
   },
   {
@@ -115,7 +115,7 @@ export const Feeling = [
     id: "racially-discriminated",
     title: "Racially Discriminated",
     path: "/racially-discriminated",
-    color: ["#F4B183", "#FFF8EA", "#815B5B"],
+    color: ["#D3D3D3", "#20B2AA", "#FFD1DC"],
     verse: "49:13",
   },
   {
