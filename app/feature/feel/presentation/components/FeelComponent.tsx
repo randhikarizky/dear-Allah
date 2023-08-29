@@ -6,14 +6,20 @@ import {
   Chip,
   Container,
   Divider,
+  Fade,
+  Grow,
   Icon,
   IconButton,
+  Skeleton,
   Stack,
   Typography,
   alpha,
   styled,
 } from "@mui/material";
-import { useGetQuranBySurah } from "@/app/feature/quran/presentation/controller/quran.controller";
+import {
+  useGetQuranBySurah,
+  useGetTafsirBySurah,
+} from "@/app/feature/quran/presentation/controller/quran.controller";
 import GlassBg from "@/app/global/components/Glass/GlassBg";
 
 const Section = styled("div")(({ theme }) => ({
@@ -31,6 +37,7 @@ const FeelComponent = () => {
   const [colorScheme, setColorScheme] = useState<string[]>([]);
 
   const Surah = useGetQuranBySurah({ surah: surah });
+  const Tafsir = useGetTafsirBySurah({ surah: surah });
 
   const handlePlay = () => {};
 
@@ -67,6 +74,7 @@ const FeelComponent = () => {
 
   useEffect(() => {
     if (surah !== "") {
+      Tafsir.refetch();
       Surah.refetch();
     }
   }, [surah]);
@@ -120,37 +128,45 @@ const FeelComponent = () => {
               }
             >
               <Box>
-                <Typography
-                  variant="h3"
-                  align="center"
-                  sx={{
-                    color: "rgba(255,255,255)",
-                    fontWeight: "500",
-                    marginBottom: ".5rem",
-                  }}
-                >
-                  {Surah.data?.nama}
-                </Typography>
-                <Typography
-                  variant="h1"
-                  align="center"
-                  sx={{
-                    color: "rgba(255,255,255)",
-                  }}
-                >
-                  {Surah.data?.namaLatin}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  align="center"
-                  sx={{
-                    color: "rgba(255,255,255, .75)",
-                    fontFamily: "Plus Jakarta Sans",
-                    fontWeight: "500",
-                  }}
-                >
-                  {Surah.data?.arti}
-                </Typography>
+                {Surah.isLoading ? (
+                  <Fade in={Surah.isLoading}>
+                    <Skeleton height={115} animation="wave" variant="rounded" />
+                  </Fade>
+                ) : (
+                  <>
+                    <Typography
+                      variant="h3"
+                      align="center"
+                      sx={{
+                        color: "rgba(255,255,255)",
+                        fontWeight: "500",
+                        marginBottom: ".5rem",
+                      }}
+                    >
+                      {Surah.data?.nama}
+                    </Typography>
+                    <Typography
+                      variant="h1"
+                      align="center"
+                      sx={{
+                        color: "rgba(255,255,255)",
+                      }}
+                    >
+                      {Surah.data?.namaLatin}
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      align="center"
+                      sx={{
+                        color: "rgba(255,255,255, .75)",
+                        fontFamily: "Plus Jakarta Sans",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {Surah.data?.arti}
+                    </Typography>
+                  </>
+                )}
               </Box>
               <Box>
                 <Stack
@@ -174,7 +190,13 @@ const FeelComponent = () => {
                       fontWeight: "400",
                     }}
                   >
-                    {Surah.data?.tempatTurun}
+                    {Surah.isLoading ? (
+                      <Fade in={Surah.isLoading}>
+                        <Skeleton animation="wave" variant="text" width={50} />
+                      </Fade>
+                    ) : (
+                      Surah.data?.tempatTurun
+                    )}
                   </Typography>
                   <Typography
                     variant="h6"
@@ -184,7 +206,13 @@ const FeelComponent = () => {
                       fontWeight: "400",
                     }}
                   >
-                    {`Ayat ke ${verse} dari ${Surah.data?.jumlahAyat} Ayat`}
+                    {Surah.isLoading ? (
+                      <Fade in={Surah.isLoading}>
+                        <Skeleton animation="wave" variant="text" width={200} />
+                      </Fade>
+                    ) : (
+                      `Ayat ke ${verse} dari ${Surah.data?.jumlahAyat} Ayat`
+                    )}
                   </Typography>
                 </Stack>
                 <Typography
@@ -242,30 +270,58 @@ const FeelComponent = () => {
                 </Box>
               </Stack>
             </Box>
+
+            {/* Ayat */}
             <Box>
-              <Typography
-                variant="h3"
-                align="right"
-                sx={{
-                  fontWeight: "500",
-                  marginBottom: "2rem",
-                }}
-              >
-                {Surah.data?.ayat?.[Number(verse) - 1]?.teksArab}
-              </Typography>
-              <Typography
-                variant="body1"
-                align="justify"
-                sx={{
-                  color: "rgba(0,0,0, .5)",
-                  fontFamily: "Plus Jakarta Sans",
-                  fontWeight: "400",
-                  marginBottom: ".5rem",
-                }}
-              >
-                Artinya: "{Surah.data?.ayat?.[Number(verse) - 1]?.teksIndonesia}
-                "
-              </Typography>
+              {Surah.isLoading ? (
+                <Fade in={Surah.isLoading}>
+                  <Skeleton
+                    height={50}
+                    animation="wave"
+                    variant="rounded"
+                    sx={{ marginBottom: "2rem" }}
+                  />
+                </Fade>
+              ) : (
+                <Grow in={Surah.isSuccess}>
+                  <Typography
+                    variant="h3"
+                    align="right"
+                    sx={{
+                      fontWeight: "500",
+                      marginBottom: "2rem",
+                    }}
+                  >
+                    {Surah.data?.ayat?.[Number(verse) - 1]?.teksArab}
+                  </Typography>
+                </Grow>
+              )}
+              {Surah.isLoading ? (
+                <Fade in={Surah.isLoading}>
+                  <Skeleton
+                    height={75}
+                    animation="wave"
+                    variant="rounded"
+                    sx={{ marginBottom: "2rem" }}
+                  />
+                </Fade>
+              ) : (
+                <Grow in={Surah.isSuccess}>
+                  <Typography
+                    variant="body1"
+                    align="justify"
+                    sx={{
+                      color: "rgba(0,0,0, .5)",
+                      fontFamily: "Plus Jakarta Sans",
+                      fontWeight: "400",
+                      marginBottom: ".5rem",
+                    }}
+                  >
+                    Artinya: "
+                    {Surah.data?.ayat?.[Number(verse) - 1]?.teksIndonesia}"
+                  </Typography>
+                </Grow>
+              )}
             </Box>
           </Stack>
           <Divider
@@ -273,6 +329,8 @@ const FeelComponent = () => {
             flexItem
             sx={{ borderColor: "rgba(0,0,0, 0.25)" }}
           />
+
+          {/* Tafsir */}
           <Box
             sx={{
               marginTop: "3rem",
@@ -287,7 +345,7 @@ const FeelComponent = () => {
             <Stack direction="column" gap={3}>
               <Box>
                 <Chip
-                  label="Penjelasan Surat"
+                  label="Penjelasan Ayat"
                   variant="filled"
                   sx={{
                     fontWeight: "700",
@@ -298,19 +356,28 @@ const FeelComponent = () => {
                 />
               </Box>
               <Box>
-                <Typography
-                  variant="subtitle2"
-                  align="justify"
-                  sx={{
-                    color: "rgba(0,0,0, .5)",
-                    fontFamily: "Plus Jakarta Sans",
-                    fontWeight: "500",
-                  }}
-                >
-                  {Surah.data?.deskripsi
-                    ?.replaceAll("<i>", "")
-                    ?.replaceAll("</i>", "")}
-                </Typography>
+                {Surah.isLoading ? (
+                  <Fade in={Surah.isLoading}>
+                    <Skeleton height={200} animation="wave" variant="rounded" />
+                  </Fade>
+                ) : (
+                  <Grow in={Surah.isSuccess}>
+                    <Typography
+                      variant="subtitle2"
+                      align="justify"
+                      sx={{
+                        color: "rgba(0,0,0, .5)",
+                        fontFamily: "Plus Jakarta Sans",
+                        fontWeight: "500",
+                        textIndent: "2rem",
+                      }}
+                    >
+                      {Tafsir.data?.tafsir?.[Number(verse) - 1].teks
+                        ?.replaceAll("saw", "SAW")
+                        ?.replaceAll("swt", "SWT")}
+                    </Typography>
+                  </Grow>
+                )}
               </Box>
             </Stack>
           </Box>

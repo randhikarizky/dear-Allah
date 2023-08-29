@@ -38,7 +38,7 @@ export default function ScrollTop(props: Props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 75, right: 32, zIndex: "999" }}
+        sx={{ position: "fixed", bottom: 50, right: 32, zIndex: "999" }}
       >
         <Fab color="default">
           <Icon
