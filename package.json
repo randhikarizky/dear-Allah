@@ -2,7 +2,6 @@
   "name": "dear-allah",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://randhikarizky.github.io/dear-Allah",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +9,6 @@
     "lint": "next lint",
     "format": "prettier --write --ignore-path=.gitignore .",
     "format:check": "prettier --check --ignore-path=.gitignore .",
-    "deploy": "gh-pages -d deploy",
     "deploy:vercel": "vercel"
   },
   "dependencies": {
@@ -42,7 +40,6 @@
     "@tanstack/react-query": "^4.32.6",
     "@tanstack/react-query-devtools": "^4.32.6",
     "eslint-config-prettier": "^8.10.0",
-    "gh-pages": "^6.0.0",
     "prettier": "^2.8.8",
     "react-icons": "^4.10.1",
     "vercel": "^30.2.3"
