@@ -9,15 +9,18 @@ const LandingPage = () => {
   const router = useRouter();
 
   const go = (name: string, param: string, color: [string, string, string]) => {
-    return router.push({
-      pathname: "/feel",
-      query: { name: name, verse: param, color: color },
-    });
+    return router.push(
+      {
+        pathname: "/feel",
+        query: { name: name, verse: param, color: color },
+      },
+      "/feel"
+    );
   };
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ marginTop: '2rem' }}>
+      <Container maxWidth="xl" sx={{ marginTop: "2rem" }}>
         <Stack alignItems="center" direction="column" mb={5} gap={1}>
           <Typography variant="h1" gutterBottom={false}>
             Dear Allah,
